@@ -23,9 +23,9 @@ General(config)#line vty 0 4
 SSH(config-line)#access-class SSH in
 
 1.-Evitamos conexiones a interfaces LAN y WAN.
-2.-Evitamos un protocolo inseguro TELNET y utilizamos un protocolo que soporta encritacion SSH V2.
+2.-Evitamos un protocolo inseguro TELNET y utilizamos un protocolo que soporta encriptacion, SSH V2.
 3.-Tenemos una unica ACL para este protocolo haciendo mas facil al momento de cualquier cambio o falla.
-4.-No es necesario aplicar la ACL en interaces ya que al conectar de forma remota VTY rechazara las conexiones.	
+4.-No es necesario aplicar la ACL en interfaces ya que al conectar de forma remota VTY rechazara las conexiones.	
 
 Autor: L. C.
 Fecha: 10/07/2019
