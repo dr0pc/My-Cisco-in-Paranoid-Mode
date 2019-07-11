@@ -1,4 +1,4 @@
-// Se crea una loopback para evitar que los equipos WAN y LAN puedan acceder al Ruter
+// Se crea una loopback para evitar que los equipos WAN y LAN puedan acceder al Router
 Router(config)#inter loo502
 Router(config-if)#ip add 172.16.1.1 255.255.255.0
 
