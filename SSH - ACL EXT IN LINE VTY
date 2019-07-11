@@ -1,0 +1,29 @@
+// Se crea una loopback para evitar que los equipos WAN y LAN puedan acceder al Ruter
+Router(config)#inter loo502
+Router(config-if)#ip add 172.16.1.1 255.255.255.0
+
+// Creamos un domain para poder genera una clave RSA de tamaño 1,024 y pertimos solo la version 2 de SSH
+Router(config)#ip domain name claro.gt
+General(config)#crypto key gen rsa general modu 1024
+SSH(config)#ip ssh ver 2
+
+// Creamos un usuario y pass permitimos solo acceso SSH al router
+General(config)#username admin secret nose 
+General(config)#line vty 0 4
+General(config-line)#login local
+General(config-line)#tran in ssh
+
+
+// Se genera un ACL Extendida permitiendo solo el trafico SSH a los HOST que designemos
+SSH(config)#ip access-list ex SSH
+SSH(config-ext-nacl)#permit tcp host 192.168.100.100 host 172.16.1.1 eq 22
+
+// Agregamos la ACL a las linas VTY con acces-class
+General(config)#line vty 0 4
+SSH(config-line)#access-class SSH in
+
+1.-Evitamos conexiones a interfaces LAN y WAN.
+2.-Evitamos un protocolo inseguro TELNET y utilizamos un protocolo que soporta encritacion SSH V2.
+3.-Tenemos una unica ACL para este protocolo haciendo mas facil al momento de cualquier cambio o falla.
+4.-No es necesario aplicar la ACL en interaces ya que al conectar de forma remota VTY rechazara las conexiones.	
+
