@@ -18,7 +18,7 @@ General(config-line)#tran in ssh
 SSH(config)#ip access-list ex SSH
 SSH(config-ext-nacl)#permit tcp host 192.168.100.100 host 172.16.1.1 eq 22
 
-// Agregamos la ACL a las linas VTY con acces-class
+// Agregamos la ACL a las lineas VTY con acces-class
 General(config)#line vty 0 4
 SSH(config-line)#access-class SSH in
 
